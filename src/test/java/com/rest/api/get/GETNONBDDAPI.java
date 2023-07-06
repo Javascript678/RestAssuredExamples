@@ -68,9 +68,9 @@ public class GETNONBDDAPI {
 		System.out.println(response.getContentType());
 
 		JsonPath js = response.jsonPath();
-		List<Object> idList = js.getList("628270");
+		List<Object> idList = js.getList("id");
 		System.out.println(idList);
-		Assert.assertTrue(idList.contains(3477405));
+		Assert.assertTrue(idList.contains(628270));
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.getHeader("Server"), "cloudflare");
 
