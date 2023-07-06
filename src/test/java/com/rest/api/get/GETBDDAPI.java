@@ -90,9 +90,17 @@ public class GETBDDAPI {
 	@Test(dataProvider = "getCircuitYearData")
 	public void numberOfCircuitsYearTest(String seasonYear, int circuitNumber) {
 
-		given().log().all().pathParam("raceSeason", seasonYear).when().log().all()
-				.get("http://ergast.com/api/f1/{raceSeason}/circuits.json").then().log().all().assertThat()
-				.body("MRData.CircuitTable.Circuits.circuitId", hasSize(circuitNumber));
+		given().log().all()
+			.pathParam("raceSeason", seasonYear)
+					.when().log().all()
+						.get("http://ergast.com/api/f1/{raceSeason}/circuits.json")
+								.then().log().all()
+										.assertThat()
+												.body("MRData.CircuitTable.Circuits.circuitId", hasSize(circuitNumber))
+													.and()
+														.assertThat()
+															.body("MRData.CircuitTable.Circuits", hasSize(circuitNumber));
+															
 	}
 
 	@Test
